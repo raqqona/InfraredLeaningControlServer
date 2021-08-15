@@ -8,3 +8,9 @@ type AirController struct {
     Fan byte
     LastCommand bool
 }
+
+type IndoorEnvironment struct {
+    Temp float64
+    Hum float64
+    Press float64
+}
