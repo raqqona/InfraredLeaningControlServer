@@ -24,31 +24,21 @@ func AirControllerPolling(c *gin.Context) {
         return 
     }
 
-    command := MakeAirConCommand()
+    command := airconService.MakeAirConCommand()
 
-    c.JSONP(http.StatusOK, gin.H{
-        "command" : command,
-    })
+    c.JSONP(http.StatusOK, command)
 }
 
 func AirControllerGetIndoorEnvironment(c *gin.Context) {
     indoorEnv := model.IndoorEnvironmnet{}
-    err := c.Bind(&indoorEnv)
-    if err != nil {
-        c.String(https.StatusBadRequest, "Bad request")
-        return 
-    }
-
     airconService := service.AirControllService{}
-    indoorEnv = airconService.GetIndoorEnvironmnet()
+    indoorEnv = airconService.GetIndoorEnvData()
     if indoorEnv != nil {
         c.String(http.StatusInternalServerError, "Server Error")
         return 
     }
 
-    c.JSONP(http.StatusOK, gin.H{
-        "hoge" : indoorEnv,
-    })
+    c.JSONP(http.StatusOK, indoorEnv)
 }
 
 func AirControllerCommand(c *gin.Context) {
