@@ -1,6 +1,6 @@
 package model
 
-type AirController struct {
+type AirControllerCommnad struct {
     Power byte 'json:"field_byte"'
     Mode byte 'json:"field_byte"'
     Temp byte 'json:"field_byte"'

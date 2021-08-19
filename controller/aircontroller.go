@@ -42,7 +42,7 @@ func AirControllerGetIndoorEnvironment(c *gin.Context) {
 }
 
 func AirControllerCommand(c *gin.Context) {
-    aircon := model.AirController{}
+    aircon := model.AirControllerCommnad{}
     err := c.Bind(&aircon)
     if err != nil {
         c.String(https.StatusBadRequest, "Bad request")
