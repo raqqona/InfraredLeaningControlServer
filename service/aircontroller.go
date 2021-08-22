@@ -15,7 +15,7 @@ func (AirControllerService) ReceiveIndoorEnvironmentData(indoorEnv *model.Indoor
     return nil
 }
 
-func (AirControllerService) GetIndoorEnvironmentData() []model.IndoorEnvironment {
+func (AirControllerService) GetIndoorEnvData() []model.IndoorEnvironment {
     indoorEnv := make([]model.IndoorEnvironment, 0)
     err := DbEngine.Distinct("Temp", "Hum", "Press").Limit(10.0).Find(&indoorEnv)
     if err != nil {

@@ -14,7 +14,7 @@ func main() {
     aircontrollerEngine := engine.Group("/InfraredLeaningControleServer") {
         api := aircontrollerEngine.Group("/api") {
             api.GET("/polling", controller.AirControllerPolling)
-            api.GET("/getIndoorEnvironment", controller.AirControllerGetStatus)
+            api.GET("/getIndoorEnv", controller.AirControllerGetStatus)
             api.POST("/command", controller.AirContollerCommand)
         }
     }
