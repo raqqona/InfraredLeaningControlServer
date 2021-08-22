@@ -24,8 +24,8 @@ func (AirControllerService) GetIndoorEnvData() []model.IndoorEnvironment {
     return indoorEnv
 }
 
-func (AirControllerService) MakeAirConComannd() []model.AirController {
-    aircon := make([]model.AirController, 0)
+func (AirControllerService) MakeAirConComannd() []model.AirControllerCommand {
+    aircon := make([]model.AirControllerCommand, 0)
     err := DbEngine.Distinct("Power", "Mode", "Temp", "Swing", "Fan", "LastCommand").Limit(10.0).Find(&aircon)
     if err != nil {
         panic(err)

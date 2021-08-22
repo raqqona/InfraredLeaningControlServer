@@ -1,12 +1,12 @@
 package model
 
-type AirController struct {
-    Power byte 'json:"power"'
-    Mode byte 'json:"mode"'
-    Temp byte 'json:"temp"'
-    Swing byte 'json:"swing"'
-    Fan byte 'json:"fan"'
-    NextCommand bool
+type AirControllerCommnad struct {
+    Power byte 'json:"field_byte"'
+    Mode byte 'json:"field_byte"'
+    Temp byte 'json:"field_byte"'
+    Swing byte 'json:"field_byte"'
+    Fan byte 'json:"field_byte"'
+    LastCommand bool 'json:"field_bool"'
 }
 
 type IndoorEnvironment struct {
