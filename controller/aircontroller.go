@@ -56,8 +56,6 @@ func AirControllerCommand(c *gin.Context) {
         return 
     }
 
-    c.JSON(http.StatusCreated, gin.H{
-        "command" : "NULL",
-    })
+    c.JSON(http.StatusCreated, err)
 }
 
