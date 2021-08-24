@@ -10,12 +10,12 @@ def error_500(error):
 
 @app.route('/api/pohling', method=['GET'])
 def pohling():
-    pass
+    return command_json
 
 @app.route('/api/getIndoorEnv', method=['GET'])
 def getIndoorEnv():
-    pass
+    return indoorEnv_json
 
 @app.route('/api/command', method=['POST'])
 def command():
-    pass
+    return "accept"
