@@ -13,9 +13,9 @@ def pohling():
     pass
 
 @app.route('/api/getIndoorEnv', method=['GET'])
-def pohling():
+def getIndoorEnv():
     pass
 
 @app.route('/api/command', method=['POST'])
-def pohling():
+def command():
     pass
