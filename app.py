@@ -1,6 +1,8 @@
-from Flask import Flask, request, Response, make_response
+from flask import Flask, request, Response, make_response
 import sqlite3
 import os
+import model/airconcommand
+import model/indoorenvironment
 
 app = Flask(__name__)
 
