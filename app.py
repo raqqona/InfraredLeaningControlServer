@@ -24,9 +24,10 @@ def pohling():
     INDOORENV_ID =sql_hadller.insert_indoorEnv_column(indoor_env)
 
     command = model.AirConCommnad()
-    if !COMMAND_ID < sql_handler.get_latest_command():
+    if not COMMAND_ID < sql_handler.get_latest_command():
         return command.export_json(False)
     else:
+        COMMAND_ID = sql_hadller.get_latest_commnad()
         return command.export_json(True)
         
 
@@ -41,7 +42,6 @@ def getIndoorEnv():
 def command():
     command = model.AirConCommnad()
     command.set_data_from_json(request.json)
-    COMMAND_ID = sql_hadllerl.insert_command_column(command)
 
     sql_handler.insert_command(command)
     
