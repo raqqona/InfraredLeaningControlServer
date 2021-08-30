@@ -5,11 +5,9 @@ import model
 import sql
 
 
-
-INDOORENV_ID = 0
 COMMAND_ID = 0
 
-sql_hadller = sql.SqlHandler()
+sql_handller = sql.SqlHandler()
 
 app = Flask(__name__)
 
@@ -21,20 +19,20 @@ def error_500(error):
 def pohling():
     indoor_env = model.IndoorEnv()
     indoor_env.set_data_from_json(request.json)
-    INDOORENV_ID =sql_hadller.insert_indoorEnv_column(indoor_env)
+    sql_handller.insert_indoorEnv_column(indoor_env)
 
     command = model.AirConCommnad()
-    if not COMMAND_ID < sql_handler.get_latest_command():
-        return command.export_json(False)
-    else:
-        COMMAND_ID = sql_hadller.get_latest_commnad()
+    if COMMAND_ID < sql_handller.get_latest_id(sql.COMMAND_TABLE):
+        COMMAND_ID = sql_handller.get_latest_id(sql.COMMAND_TABLE)
         return command.export_json(True)
+    else:
+        return command.export_json(False)
         
 
 @app.route('/api/getIndoorEnv', methods=['GET'])
 def getIndoorEnv():
     indoor_env = model.IndoorEnv()
-    indoor_env.set_data_from_sql(sql_hadller.get_latest_indoorEnv())
+    indoor_env.set_data_from_sql(sql_handller.get_latest_indoorEnv())
 
     return indoor_env.export_json()
 
@@ -43,7 +41,7 @@ def command():
     command = model.AirConCommnad()
     command.set_data_from_json(request.json)
 
-    sql_handler.insert_command(command)
+    sql_handller.insert_command_column(command)
     
     return "accept"
 

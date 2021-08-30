@@ -16,19 +16,16 @@ class SqlHandler:
         cur.execute('INSERT INTO ? VALUES (?, ?, ?)', [INDOORENV_TABLE, column.temp, temp.hum, temp.press])
         conn.commit()
         
-        return get_latest_id(table_name)
     
     def insert_command_column(self, column):
-        cur.execute('INSERT INTO ? VALUES (?, ?, ?, ?, ?)', [COMMAND_TABLE, column.power, column.mode, column.temp, column.swing, column.fan])
+        cur.execute('INSERT INTO ? VALUES (?, ?, ?, ?, ?)', COMMAND_TABLE, [column.power, column.mode, column.temp, column.swing, column.fan])
         conn.commit()
         
-        return get_latest_id(table_name)
     
     def delete_column(self, table_name, id):
         cur.execute('DELETE FROM ? WHERE id = ?', [table_name, id])
         conn.commit()
 
-        return get_latest_id(table_name)
 
     def get_column(self, table_name, id):
         cur.execute('SELECT * FROM ' + table_name)
@@ -42,17 +39,17 @@ class SqlHandler:
         return max(id_row)
     
     def get_latest_indoorEnv(self):
-        id = get_latest_id(self)
+        id = get_latest_id(get_latest_id(INDOORENV_TABLE))
         indoorEnv_column = get_column(INDOORENV_TABLE, id)
-        indoorEnv = indoorenvironment.IndoorEnv(indoorEnv_column)
+        indoorEnv = model.IndoorEnv(indoorEnv_column)
         
         return indoorEnv
     
     
     def get_latest_commnad(self):
-        id = get_latest_id(self)
+        id = get_latest_id(get_latest_id(COMMAND_TABLE))
         command_column = get_column(COMMAND_TABLE, id)
-        command = airconcommand.AirConCommnad(command_column)
+        command = model.AirConCommnad(command_column)
 
         return command
     
