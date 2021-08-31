@@ -5,7 +5,7 @@ import model
 
 INDOORENV_TABLE = "indoorEnvironment"
 COMMAND_TABLE = "command"
-DB_PATH = "**********"
+DB_PATH = "***********"
 
 class SqlHandler:
     def __init__(self):
@@ -13,29 +13,47 @@ class SqlHandler:
         self.cur = self.conn.cursor()
 
     def insert_indoorEnv_column(self, column):
-        cur.execute('INSERT INTO ? VALUES (?, ?, ?)', [INDOORENV_TABLE, column.temp, temp.hum, temp.press])
-        conn.commit()
+        cur.execute('INSERT INTO ' + INDOORENV_TABLE +' VALUES (?, ?, ?)', (column.temp, temp.hum, temp.press))
         
+        except sqlite3.Error as e:
+            print(e)
+
+        conn.commit()
     
     def insert_command_column(self, column):
-        cur.execute('INSERT INTO ? VALUES (?, ?, ?, ?, ?)', COMMAND_TABLE, [column.power, column.mode, column.temp, column.swing, column.fan])
-        conn.commit()
+        cur.execute('INSERT INTO ' + COMMAND_TABLE + ' VALUES (?, ?, ?, ?, ?)', (column.power, column.mode, column.temp, column.swing, column.fan))
         
+        except sqlite3.Error as e:
+            print(e)
+
+        conn.commit()
     
     def delete_column(self, table_name, id):
-        cur.execute('DELETE FROM ? WHERE id = ?', [table_name, id])
+        cur.execute('DELETE FROM ' + table_name + ' WHERE id = ?', (id))
+
+        except sqlite3.Error as e:
+            print(e)
+
         conn.commit()
 
-
     def get_column(self, table_name, id):
-        cur.execute('SELECT * FROM ' + table_name)
-        column = cur.fetchall()
+        cur.execute('SELECT * FROM ' + table_name + ' WHERE id=?', (id))
 
+        except sqlite3.Error as e:
+            print(e)
+
+        column = cur.fetchall()
+        
         return column
     
     def get_latest_id(self, table_name):
         cur.execute('SELECT id FORM ' + table_name)
+        
+        except sqlite3.Error as e:
+            print(e)
+
         id_row = cur.fetchall() 
+   
         return max(id_row)
     
     def get_latest_indoorEnv(self):
