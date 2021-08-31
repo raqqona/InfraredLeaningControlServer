@@ -3,8 +3,8 @@ import os
 import model
 
 
-INDOORENV_TABLE = "indoorEnvironment_table"
-COMMAND_TABLE = "command_table"
+INDOORENV_TABLE = "indoorEnvironment"
+COMMAND_TABLE = "command"
 DB_PATH = "**********"
 
 class SqlHandler:

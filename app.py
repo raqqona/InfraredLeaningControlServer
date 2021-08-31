@@ -15,7 +15,7 @@ app = Flask(__name__)
 def error_500(error):
     return 500
 
-@app.route('/api/pohling', methods=['GET'])
+@app.route('/api/pohling', methods=['POST'])
 def pohling():
     indoor_env = model.IndoorEnv()
     indoor_env.set_data_from_json(request.json)
