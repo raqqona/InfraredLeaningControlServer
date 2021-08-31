@@ -1,47 +1,17 @@
 ## InfraredLeaningControlServer
+ this branch has init script for db 
+make two tables 
 
-### API
+### indoorEnv
 
-```
-method  : GET
-path    : /api/polling
-query   : {
-            "temp" : "$TEMP",
-            "hum" : "$HUM",
-            "press" : "$PRESS",
-            "previous_command" : "T/F"
-          }
+| id | temp | hum | press |
+|----|------|-----|-------|
+| 1 | 28.0 | 54 | 1003 |
+| 2 | 26.5 | 48 | 1010 |
 
-response: {
-            "power" : "On/Off",
-            "mode" : "$MODE",
-            "temp" : "$TEMP",
-            "swing" : "$SWING",
-            "fan" : "$FAN"
-          }
-```
+### command
 
-```
-method  : GET
-path    : /api/getIndoorEnv
-response: {
-            "temp" : "$TEMP",
-            "hum" : "$HUM",
-            "press" : "$PRESS",
-            "previous_command" : "T/F"
-          }
-```
-
-```
-method  : POST
-path    : /api/command
-query   : {
-            "power" : "On/Off",
-            "mode" : "$MODE",
-            "temp" : "$TEMP",
-            "swing" : "$SWING",
-            "fan" : "$FAN"
-          }
-```
-
-
+| id | power | mode | temp | swing | fan |
+|----|-------|------|------|-------|-----|
+| 1 | on | cool | 30 | silent | silent |
+| 2 | off | cool | 30 | silent | silent |
