@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+    db:
+        container_name: mysql
+        build: ./docker/mysql
+        hostname: mysql
+        ports:
+            - "3306:3306"
+        enviroment:
+            - MYSQL_DATABASE=${DB_NAME}
+            - MYSQL_USER=${DB_USER}
+            - MYSQL_PASSWORD=${DB_PASS}
+            - MYSQL_ROOT_PASSWORD=${DB_PASS}
+            - TZ=${TZ}
+        volumes:
+            - ./docker/mysql/my.cnf:etc/mysql/conf.d/my.cnf
+            - ./docker/mysql/data:/var/lib/mysql
+            - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
+
+    server:
+        container_name: ilc-server
+        build:
+            context: .
+            dockerfile: ./docker/python/Dockerfile
+        tty: true
+        ports:
+            - 8080:8080:
+        depends_on:
+            -db
